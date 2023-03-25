@@ -1,0 +1,292 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <h2 style="color: aliceblue">Dhiraj</h2>
+    &nbsp;
+    <button
+      (click)="Add()"
+      style="margin-right: auto"
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Add
+    </button>
+    <div class="form-check" style="margin-right: auto">
+      <input
+        [(ngModel)]="filter"
+        [ngModelOptions]="{ standalone: true }"
+        class="form-check-input"
+        type="radio"
+        value="id"
+        name="flexRadioDefault"
+        id="flexRadioDefault1"
+      />
+      <label
+        class="form-check-label"
+        for="flexRadioDefault1"
+        style="color: white"
+      >
+        ID
+      </label>
+    </div>
+    <div class="form-check" style="margin-right: auto">
+      <input
+        [(ngModel)]="filter"
+        [ngModelOptions]="{ standalone: true }"
+        class="form-check-input"
+        type="radio"
+        value="name"
+        name="flexRadioDefault"
+        id="flexRadioDefault2"
+        checked
+      />
+      <label
+        class="form-check-label"
+        for="flexRadioDefault2"
+        style="color: white"
+      >
+        Name
+      </label>
+    </div>
+    <div class="form-check" style="margin-right: auto">
+      <input
+        [(ngModel)]="filter"
+        [ngModelOptions]="{ standalone: true }"
+        class="form-check-input"
+        type="radio"
+        value="mobile"
+        name="flexRadioDefault"
+        id="flexRadioDefault2"
+        checked
+      />
+      <label
+        class="form-check-label"
+        for="flexRadioDefault2"
+        style="color: white"
+      >
+        Mobile
+      </label>
+    </div>
+    <div class="form-check" style="margin-right: auto">
+      <input
+        [(ngModel)]="filter"
+        [ngModelOptions]="{ standalone: true }"
+        class="form-check-input"
+        type="radio"
+        value="address"
+        name="flexRadioDefault"
+        id="flexRadioDefault2"
+        checked
+      />
+      <label
+        class="form-check-label"
+        for="flexRadioDefault2"
+        style="color: white"
+      >
+        Address
+      </label>
+    </div>
+    <form class="d-flex" role="search">
+      <input
+        [(ngModel)]="name"
+        (ngModelChange)="Filter()"
+        class="form-control me-2"
+        type="search"
+        name="name"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button
+        class="btn btn-outline-success"
+        (click)="onSearch()"
+        type="submit"
+        style="border-color: #d6062c"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
+
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <td scope="col">ID</td>
+      <td scope="col">Name</td>
+      <td scope="col">Mobile</td>
+      <td scope="col">Address</td>
+      <td scope="col">Salry</td>
+      <td scope="col">Action</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of user">
+      <td>{{ row.id }}</td>
+      <td>{{ row.name }}</td>
+      <td>{{ row.mobile }}</td>
+      <td>{{ row.address }}</td>
+      <td>{{ row.salary }}</td>
+      <td>
+        <button
+          (click)="Update(row)"
+          type="button"
+          class="btn btn-info"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Edit</button
+        > &nbsp;
+        <button (click)="onDelete(row)" type="button" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">User</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">ID</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="id"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+            <small
+              *ngIf="
+                formValue.get('id')?.invalid && formValue.get('name')?.touched
+              "
+              class="text-danger"
+            >
+            Enter 1 digit only*
+            </small>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              id="exampleInputPassword1"
+            />
+            <small
+              *ngIf="
+                formValue.get('name')?.invalid && formValue.get('name')?.touched
+              "
+              class="text-danger"
+            >
+              Enter alphabet only*
+            </small>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Mobile</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="mobile"
+              id="exampleInputPassword1"
+            />
+            <small
+              *ngIf="
+                formValue.get('mobile')?.invalid &&
+                formValue.get('mobile')?.touched
+              "
+              class="text-danger"
+            >
+              Enter 10 digit
+            </small>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Address</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="address"
+              id="exampleInputPassword1"
+            />
+            <small
+              *ngIf="
+                formValue.get('address')?.invalid &&
+                formValue.get('address')?.touched
+              "
+              class="text-danger"
+            >
+            Enter alphabet only*
+            </small>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Salary</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="salary"
+              id="exampleInputPassword1"
+            />
+            <small
+              *ngIf="
+                formValue.get('salary')?.invalid &&
+                formValue.get('salary')?.touched
+              "
+              class="text-danger"
+            >
+            Enter 5 digit*
+            </small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="cancle"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          *ngIf="showAdd"
+          (click)="onSubmit()"
+          [disabled]="formValue.invalid"
+          class="btn btn-success"
+        >
+          Add
+        </button>
+        <button
+          type="button"
+          *ngIf="showUpdate"
+          (click)="onEdit()"
+          
+          class="btn btn-success"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

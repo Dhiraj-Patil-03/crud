@@ -1,0 +1,63 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "employee_data": [
+    {
+      "id": 1,
+      "name": "Bhumit",
+      "mobile": "1111111",
+      "address": "pala",
+      "salary": "45000"
+    },
+    {
+      "name": "Kajal",
+      "id": 2,
+      "mobile": 22222222222,
+      "address": "rander",
+      "salary": 25000
+    },
+    {
+      "name": "Aditya",
+      "id": 3,
+      "mobile": 3333333333,
+      "address": "nanpura",
+      "salary": 20000
+    },
+    {
+      "id": "5",
+      "name": "Dhiraj Patil",
+      "mobile": "5555555555",
+      "address": "Navsari",
+      "salary": "300000"
+    }
+  ],
+  "car_data": [
+    {
+      "car_name": "Tata",
+      "minimum_salary": 15000
+    },
+    {
+      "car_name": "Mahindra",
+      "minimum_salary": 30000
+    },
+    {
+      "car_name": "MG",
+      "minimum_salary": 40000
+    }
+  ]
+}
